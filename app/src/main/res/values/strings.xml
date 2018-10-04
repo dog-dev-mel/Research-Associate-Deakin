@@ -7,4 +7,6 @@
     <string name="deakin_drone_detector">Deakin Drone Detector</string>
     <string name="todo">TODO</string>
     <string name="platform">Platform</string>
+    <string name="scanning_drone">Scanning Drone</string>
+    <string name="updating_info">Updating Info</string>
 </resources>
