@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ddetector.dronedetector">
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
 
-    <!--ACCESS_WIFI_STATE is "Allows applications to access information about Wi-Fi networks"-->
-    <!--CHANGE_WIFI_STATE is "Allows applications to change Wi-Fi connectivity state"-->
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"  />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"  />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"  />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"  />
+    <!-- ACCESS_WIFI_STATE is "Allows applications to access information about Wi-Fi networks" -->
+    <!-- CHANGE_WIFI_STATE is "Allows applications to change Wi-Fi connectivity state" -->
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--<uses-permission android:name="android.permission.BATTERY_STATS" tools:ignore="ProtectedPermissions" />-->
 
 
     <application
@@ -19,9 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:screenOrientation="portrait"
             android:name=".StartPage"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,10 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".DroneScanningPage"
             android:parentActivityName=".StartPage"
-            android:screenOrientation="portrait">
+            android:label="@string/scanning_drone"
+            android:screenOrientation="portrait" >
+        </activity>
+
+
+        <activity
+            android:name=".DetectorPage"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_detector_page">
         </activity>
     </application>
 

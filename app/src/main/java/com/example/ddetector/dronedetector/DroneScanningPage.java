@@ -30,23 +30,26 @@ public class DroneScanningPage extends AppCompatActivity {
     private List<ScanResult> scaningresultsList;
     private ArrayList<String> scanningarrayList =new ArrayList<>();
     private ArrayAdapter scanningarrayAdapter;
+    private Button btnAdd;
+
+    DatabaseHelper mDatabaseHelper;
 
     //add the tag
-    public static final String TAG = DroneScanningPage.class.getSimpleName();
+//    public static final String TAG = DroneScanningPage.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dronescanningpage);
-        Intent intent = getIntent();
-        scanningButton =findViewById(R.id.scanBtn);
-        scanningButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scanWifi();
-
-            }
-        });
+//        Intent intent = getIntent();
+//        scanningButton =findViewById(R.id.scanBtn);
+//        scanningButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                scanWifi();
+//
+//            }
+ //       });
 
         scanninglistView = findViewById(R.id.dronedetectorscanningList);
         dronesignalManger = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -59,6 +62,28 @@ public class DroneScanningPage extends AppCompatActivity {
         scanningarrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, scanningarrayList);
         scanninglistView.setAdapter(scanningarrayAdapter);
         scanWifi();
+
+
+        mDatabaseHelper = new DatabaseHelper(this);
+        btnAdd =(Button) findViewById(R.id.detectorinfo_updating_btn);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newEntry = scanningarrayList.get(1).toString();
+                AddData(newEntry);
+            }
+        });
+    }
+
+    public void AddData (String newEntry) {
+        boolean insertData =mDatabaseHelper.addData(newEntry);
+
+        if(insertData) {
+            Toast.makeText(this, "Data Sucessful Inserted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void scanWifi() {
@@ -71,11 +96,17 @@ public class DroneScanningPage extends AppCompatActivity {
     BroadcastReceiver dronesignalReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            // Code to execute when SCAN_RESULTS_AVAILABLE_ACTION event occurs
             scaningresultsList = dronesignalManger.getScanResults();
             unregisterReceiver(this);
 
+
             for (ScanResult scanResult : scaningresultsList) {
-                scanningarrayList.add(scanResult.SSID + " - " + scanResult.capabilities + " - " + scanResult.BSSID + " - " + scanResult.frequency + " - " + scanResult.level);
+                scanningarrayList.add("Drone SSID: " + scanResult.SSID + "\n"
+                                    + "Drone BSSID: " + scanResult.BSSID + "\n"
+                                    + "Drone Frequency: "+ scanResult.frequency + "\n"
+                                    + "Drone Level: "+ scanResult.level+"\n"
+                                    + "Drone Capabilities: " + scanResult.capabilities);
                 scanningarrayAdapter.notifyDataSetChanged();
 
                 //Print the WIFI info for debugging
@@ -84,5 +115,4 @@ public class DroneScanningPage extends AppCompatActivity {
             }
         }
     };
-
 }

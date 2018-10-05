@@ -7,6 +7,13 @@
     <string name="deakin_drone_detector">Deakin Drone Detector</string>
     <string name="todo">TODO</string>
     <string name="platform">Platform</string>
-    <string name="scanning_drone">Scanning Drone</string>
-    <string name="updating_info">Updating Info</string>
+    <string name="scanning_drone">Drone Scan</string>
+    <string name="updating_info">Drone Scan Resutls Auto Updating</string>
+    <string name="title_activity_detector">Detector</string>
+    <string name="title_activity_detector_page">Detector Info</string>
+    <string name="textview1">Detector Provider</string>
+    <string name="textview2">Detector Name</string>
+    <string name="textview3">Detector Healthy</string>
+    <string name="textview4">Detector Locations</string>
+    <string name="btnDetector">Detector Info Auto Updating</string>
 </resources>

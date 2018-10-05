@@ -22,11 +22,20 @@ public class StartPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button btnScanning = (Button) findViewById(R.id.drone_scanning);
+        Button btnDetector = (Button) findViewById(R.id.detector_button);
 
         btnScanning.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
                 Intent intent = new Intent(StartPage.this, DroneScanningPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDetector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, DetectorPage.class);
                 startActivity(intent);
             }
         });
