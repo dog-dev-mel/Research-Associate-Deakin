@@ -11,6 +11,7 @@
         android:id="@+id/dronedetectorscanningList"
         android:layout_width="match_parent"
         android:layout_height="450dp"
+        android:fastScrollAlwaysVisible="true"
         android:layout_marginBottom="2dp"
         android:background="@android:color/holo_orange_dark"
         app:layout_constraintBottom_toBottomOf="parent"

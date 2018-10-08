@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +34,9 @@ public class DroneScanningPage extends AppCompatActivity {
     private ArrayList<String> scanningarrayList =new ArrayList<>();
     private ArrayAdapter scanningarrayAdapter;
     private Button btnAdd;
+    private DatabaseReference ref;
 
-    DatabaseHelper mDatabaseHelper;
+    //DatabaseHelper mDatabaseHelper;
 
     //add the tag
 //    public static final String TAG = DroneScanningPage.class.getSimpleName();
@@ -51,6 +55,10 @@ public class DroneScanningPage extends AppCompatActivity {
 //            }
  //       });
 
+        //SETUP FIREBASE
+        ref = FirebaseDatabase.getInstance().getReference();
+
+
         scanninglistView = findViewById(R.id.dronedetectorscanningList);
         dronesignalManger = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
@@ -63,28 +71,29 @@ public class DroneScanningPage extends AppCompatActivity {
         scanninglistView.setAdapter(scanningarrayAdapter);
         scanWifi();
 
-
-        mDatabaseHelper = new DatabaseHelper(this);
-        btnAdd =(Button) findViewById(R.id.detectorinfo_updating_btn);
-
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newEntry = scanningarrayList.get(1).toString();
-                AddData(newEntry);
-            }
-        });
+        //Bundle the button with the behavior of creating a databse;
+//        mDatabaseHelper = new DatabaseHelper(this);
+//        btnAdd =(Button) findViewById(R.id.detectorinfo_updating_btn);
+//
+//        btnAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //String newEntry = scanningarrayList.get(1).toString();
+//                String newEntry = "Test";
+//                AddData(newEntry);
+//            }
+//        });
     }
 
-    public void AddData (String newEntry) {
-        boolean insertData =mDatabaseHelper.addData(newEntry);
-
-        if(insertData) {
-            Toast.makeText(this, "Data Sucessful Inserted", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    public void AddData (String newEntry) {
+//        boolean insertData =mDatabaseHelper.addData(newEntry);
+//
+//        if(insertData) {
+//            Toast.makeText(this, "Data Sucessful Inserted", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void scanWifi() {
         scanningarrayList.clear();
@@ -92,6 +101,7 @@ public class DroneScanningPage extends AppCompatActivity {
         dronesignalManger.startScan();
         Toast.makeText(this, "Scaning the drone...", Toast.LENGTH_SHORT).show();
     }
+
 
     BroadcastReceiver dronesignalReceiver = new BroadcastReceiver() {
         @Override
@@ -108,6 +118,22 @@ public class DroneScanningPage extends AppCompatActivity {
                                     + "Drone Level: "+ scanResult.level+"\n"
                                     + "Drone Capabilities: " + scanResult.capabilities);
                 scanningarrayAdapter.notifyDataSetChanged();
+
+                String systemtime = Long.toString(System.currentTimeMillis());
+                String SSIDdata = scanResult.SSID;
+                String BSSIData = scanResult.BSSID;
+                String FreData =  Integer.toString(scanResult.frequency);
+                String LevData = Integer.toString(scanResult.level);
+                String CapData = scanResult.capabilities.replaceAll("\\[|\\]", " ");
+
+                ref.child("droneuid_"+systemtime).child(BSSIData)
+                        .child("ssid").child(SSIDdata)
+                        .child("frequency").child(FreData)
+                        .child("level").child(LevData)
+                        .child("Capabilities").child(CapData)
+                        .setValue(true);
+
+
 
                 //Print the WIFI info for debugging
                 //Log.v(TAG,"scanningarrayList="+scanningarrayList);
