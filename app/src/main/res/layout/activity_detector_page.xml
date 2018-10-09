@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_begin="307dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
@@ -59,6 +59,7 @@
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/textview1"
+        android:typeface="sans"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,34 +73,32 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/textview2"
+        android:typeface="sans"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
     <TextView
         android:id="@+id/detectorHealthyInfotxt"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/textview3"
+        android:typeface="sans"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detectorNametxt"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/detectorNametxt" />
 
     <TextView
         android:id="@+id/detectorLocationInfotxt"
@@ -111,6 +110,7 @@
         android:layout_marginBottom="8dp"
         android:background="@android:color/holo_green_light"
         android:text="@string/textview4"
+        android:typeface="sans"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +119,7 @@
 
     <Button
         android:id="@+id/detectorinfo_updating_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -128,6 +128,8 @@
         android:background="@android:color/holo_blue_bright"
         android:text="@string/btnDetector"
         android:textColor="@android:color/background_dark"
+        android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
