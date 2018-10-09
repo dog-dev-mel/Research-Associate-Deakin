@@ -4,7 +4,7 @@
     <string name="detector">Detector</string>
     <string name="transaction_history">Transaction History</string>
     <string name="drone_scanning">Drone Scanning</string>
-    <string name="deakin_drone_detector">Deakin Drone Detector</string>
+    <string name="deakin_drone_detector">Deakin Drone Detector Platform</string>
     <string name="todo">TODO</string>
     <string name="platform">Platform</string>
     <string name="scanning_drone">Drone Scan</string>
