@@ -2,8 +2,6 @@ package com.example.ddetector.dronedetector;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -21,48 +19,57 @@ public class StartPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button btnScanning = (Button) findViewById(R.id.drone_scanning);
-        Button btnDetector = (Button) findViewById(R.id.detector_button);
+        Button btnDroneScan = (Button) findViewById(R.id.ID_StartPage_BTN_DroneScan);
+        Button btnDetectorInfo = (Button) findViewById(R.id.ID_StartPage_BTN_DetectorInfo);
+        Button btnAboutApp = (Button) findViewById(R.id.ID_StartPage_BTN_AboutApp);
 
-        btnScanning.setOnClickListener(new View.OnClickListener() {
+        btnDroneScan.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View v) {
-                Intent intent = new Intent(StartPage.this, DroneScanningPage.class);
+                Intent intent = new Intent(StartPage.this, DroneScanPage.class);
                 startActivity(intent);
             }
         });
 
-        btnDetector.setOnClickListener(new View.OnClickListener() {
+        btnDetectorInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartPage.this, DetectorPage.class);
+                Intent intent = new Intent(StartPage.this, DetectorInfoPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAboutApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, AboutAppPage.class);
                 startActivity(intent);
             }
         });
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_start_page, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_start_page, menu);
+//        return true;
+//    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
 }

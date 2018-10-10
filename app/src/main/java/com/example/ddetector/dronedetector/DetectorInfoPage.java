@@ -1,35 +1,20 @@
 package com.example.ddetector.dronedetector;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.os.BatteryManager;
 import android.os.Bundle;
-import android.os.HardwarePropertiesManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.sql.Array;
 
-import static android.os.HardwarePropertiesManager.TEMPERATURE_CURRENT;
-
-
-public class DetectorPage extends AppCompatActivity {
+public class DetectorInfoPage extends AppCompatActivity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detector_page);
+        setContentView(R.layout.activity_detectorinfo_page);
 
         //Get the Android MAC address as the Detector UID
         WifiManager wifimanager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -54,19 +39,19 @@ public class DetectorPage extends AppCompatActivity {
 
 
 
-        TextView detectorprovidertxtView = (TextView) findViewById(R.id.detectorProvidertxt);
+        TextView detectorprovidertxtView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorProvider);
         detectorprovidertxtView.setText("DETECTOR PROVIDER" + "\n" + "Deakin Univeristy Burwood Campus"); //set text for text view
 
-        TextView detectornametxtView = (TextView) findViewById(R.id.detectorNametxt);
+        TextView detectornametxtView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorName);
         detectornametxtView.setText("DETECTOR UID" + "\n" + "Detector BSSID is " + macAddress);
 
-        TextView detectorHealthyInfoView = (TextView) findViewById(R.id.detectorHealthyInfotxt);
+        TextView detectorHealthyInfoView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorHealthy);
         detectorHealthyInfoView.setText("DETECTOR HEALTHY INFO" + "\n"
                                         + "CPU: " + "\n"
                                         + "MEMORY: " +  "\n"
                                         + "BATTERY: " ); //set text for text view
 
-        TextView detectorLocationInfoView = (TextView) findViewById(R.id.detectorLocationInfotxt);
+        TextView detectorLocationInfoView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorLocations);
         detectorLocationInfoView.setText("DETECTOR LOCATION INFO" + "\n"
                                          + "Latitude: " + "\n"
                                          + "Longitude: " ); //set text for text view

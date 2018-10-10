@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DroneScanningPage extends AppCompatActivity {
+public class DroneScanPage extends AppCompatActivity {
 
     private WifiManager dronesignalManger;
     private ListView scanninglistView;
@@ -70,7 +70,7 @@ public class DroneScanningPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dronescanningpage);
+        setContentView(R.layout.activity_dronescan_page);
 
         //Currently, We will reserve the Button for setting the Timer value or sending the transactions to the smart contract server in the future.
 //        scanningButton =findViewById(R.id.scanBtn);
@@ -85,7 +85,7 @@ public class DroneScanningPage extends AppCompatActivity {
         //Setup Firebase Database
         ref = FirebaseDatabase.getInstance().getReference();
 
-        scanninglistView = findViewById(R.id.dronedetectorscanningList);
+        scanninglistView = findViewById(R.id.ID_DroneScanPage_LIST_WIFIScanResults);
         dronesignalManger = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         //To verify the status of WIFI switch
@@ -99,7 +99,7 @@ public class DroneScanningPage extends AppCompatActivity {
 
         //To define the WIFI scan Timer, We choose 15 seconds now
         //IF there is a requirement of setting the Timer value on the UI in future
-        //We can add a TextView in the "activity_dronescanningpage.xml"and bundle its input Timer value.
+        //We can add a TextView in the "activity_dronescan_page.xml"and bundle its input Timer value.
         wifiscanhandler = new Handler();
         wifiscantimer = new Timer();
         wifiscantask = new TimerTask() {

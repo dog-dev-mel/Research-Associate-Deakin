@@ -9,126 +9,125 @@
     tools:showIn="@layout/activity_start_page">
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/StartpageGL1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.0" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/StartpageGL2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.40" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/StartpageGL3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.60" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/StartpageGL4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1.00" />
 
     <Button
-        android:id="@+id/detector_button"
+        android:id="@+id/ID_StartPage_BTN_DetectorInfo"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="4dp"
         android:background="@android:color/holo_green_dark"
-        android:text="@string/detector"
+        android:text="@string/startpage_btn_detectorinfo"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/reservation"
+        app:layout_constraintBottom_toTopOf="@+id/StartpageGL2"
+        app:layout_constraintEnd_toStartOf="@+id/ID_StartPage_BTN_DroneScan"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL1" />
 
     <Button
-        android:id="@+id/reservation"
+        android:id="@+id/ID_StartPage_BTN_DroneScan"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:color/background_light"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/startpage_btn_dronescan"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/StartpageGL2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/detector_button"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintStart_toEndOf="@+id/ID_StartPage_BTN_DetectorInfo"
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL1" />
 
     <Button
-        android:id="@+id/transaction_history"
+        android:id="@+id/ID_StartPage_BTN_TransactionHistory"
         android:layout_width="0dp"
         android:layout_height="170dp"
-
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_purple"
-        android:text="@string/transaction_history"
+        android:text="@string/startpage_btn_transactionhistory"
         android:textColor="@android:color/background_light"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toStartOf="@+id/drone_scanning"
+        app:layout_constraintBottom_toTopOf="@+id/StartpageGL4"
+        app:layout_constraintEnd_toStartOf="@+id/ID_StartPage_BTN_AboutApp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL3" />
 
     <Button
-        android:id="@+id/drone_scanning"
+        android:id="@+id/ID_StartPage_BTN_AboutApp"
         android:layout_width="0dp"
         android:layout_height="170dp"
-
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
-        android:background="@android:color/holo_orange_light"
-        android:text="@string/drone_scanning"
+        android:background="@android:color/holo_blue_light"
+        android:text="@string/startpage_btn_aboutapp"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/transaction_history"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+        app:layout_constraintStart_toEndOf="@+id/ID_StartPage_BTN_TransactionHistory"
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL3" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/ID_StartPage_IMG_Logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
-        android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/textView_1"
+        android:contentDescription="@string/startpage_image_logo"
+        app:layout_constraintBottom_toTopOf="@+id/StartpageGL3"
+        app:layout_constraintEnd_toStartOf="@+id/ID_StartPage_TXT_AppName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL2"
         app:srcCompat="@mipmap/dj" />
 
     <TextView
-        android:id="@+id/textView_1"
+        android:id="@+id/ID_StartPage_TXT_AppName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/deakin_drone_detector"
+        android:text="@string/startpage_text_appname"
         android:textColor="@android:color/background_dark"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:typeface= "sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        android:typeface="sans"
+        app:layout_constraintBottom_toTopOf="@+id/StartpageGL3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintStart_toEndOf="@+id/ID_StartPage_IMG_Logo"
+        app:layout_constraintTop_toTopOf="@+id/StartpageGL2" />
 
 </android.support.constraint.ConstraintLayout>

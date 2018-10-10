@@ -4,53 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetectorPage">
+    tools:context=".DetectorInfoPage">
 
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/DetectorInfoPageGL1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.0" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/DetectorInfoPageGL2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.20" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline7"
+        android:id="@+id/DetectorInfoPageGL3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.40" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline8"
+        android:id="@+id/DetectorInfoPageGL4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.60" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline9"
+        android:id="@+id/DetectorInfoPageGL5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.80" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline10"
+        android:id="@+id/DetectorInfoPageGL6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1.0" />
 
     <TextView
-        android:id="@+id/detectorProvidertxt"
+        android:id="@+id/ID_DetectorInfoPage_TXT_DetectorProvider"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -58,16 +58,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/textview1"
+        android:text="@string/detectorinfopage_text_detectorprovider"
         android:textColor="@android:color/background_dark"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintBottom_toTopOf="@+id/DetectorInfoPageGL2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+        app:layout_constraintTop_toTopOf="@+id/DetectorInfoPageGL1" />
 
     <TextView
-        android:id="@+id/detectorNametxt"
+        android:id="@+id/ID_DetectorInfoPage_TXT_DetectorName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -75,16 +75,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/textview2"
+        android:text="@string/detectorinfopage_text_detectorname"
         android:textColor="@android:color/background_dark"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintBottom_toTopOf="@+id/DetectorInfoPageGL3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        app:layout_constraintTop_toTopOf="@+id/DetectorInfoPageGL2" />
 
     <TextView
-        android:id="@+id/detectorHealthyInfotxt"
+        android:id="@+id/ID_DetectorInfoPage_TXT_DetectorHealthy"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -92,17 +92,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/textview3"
+        android:text="@string/detectorinfopage_text_detectorhealthyinfo"
         android:textColor="@android:color/background_dark"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
+        app:layout_constraintBottom_toTopOf="@+id/DetectorInfoPageGL4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline7"
+        app:layout_constraintStart_toEndOf="@+id/DetectorInfoPageGL3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detectorNametxt" />
+        app:layout_constraintTop_toBottomOf="@+id/ID_DetectorInfoPage_TXT_DetectorName" />
 
     <TextView
-        android:id="@+id/detectorLocationInfotxt"
+        android:id="@+id/ID_DetectorInfoPage_TXT_DetectorLocations"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -110,16 +110,16 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/textview4"
+        android:text="@string/detectorinfopage_text_detectorlocations"
         android:textColor="@android:color/background_dark"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintBottom_toTopOf="@+id/DetectorInfoPageGL5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+        app:layout_constraintTop_toTopOf="@+id/DetectorInfoPageGL4" />
 
     <Button
-        android:id="@+id/detectorinfo_updating_btn"
+        android:id="@+id/ID_DetectorInfoPage_BTN_SCS"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -127,13 +127,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_blue_bright"
-        android:text="@string/btnDetector"
+        android:text="@string/detectorinfopage_btn_scs"
         android:textColor="@android:color/background_dark"
         android:textStyle="bold"
         android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintBottom_toTopOf="@+id/DetectorInfoPageGL6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="@+id/DetectorInfoPageGL5" />
 
 </android.support.constraint.ConstraintLayout>
