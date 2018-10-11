@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,7 +46,8 @@ public class DroneScanPage extends AppCompatActivity {
                 scanningarrayAdapter.notifyDataSetChanged();
 
                 //To setup the Firebase Realtime Database Json key and value
-                String systemtime = Long.toString(System.currentTimeMillis());
+                Date devicetime = new Date(System.currentTimeMillis());
+                String systemtime = devicetime.toString();
                 String SSIDdata = scanResult.SSID;
                 String BSSIData = scanResult.BSSID;
                 String FreData =  Integer.toString(scanResult.frequency);

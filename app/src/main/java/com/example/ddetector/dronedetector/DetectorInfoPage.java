@@ -14,11 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Date;
 
 
 public class DetectorInfoPage extends AppCompatActivity {
-
+    private DatabaseReference ref;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +38,10 @@ public class DetectorInfoPage extends AppCompatActivity {
         //Get the Android device MAC address as the Detector UID
         WifiManager wifimanager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifimanager.getConnectionInfo();
-        String macAddress = info.getMacAddress();
+        final String macAddress = info.getMacAddress();
+
+        //Setup Firebase Database
+        ref = FirebaseDatabase.getInstance().getReference();
 
         //Get the Android device location Info
         LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -51,11 +57,35 @@ public class DetectorInfoPage extends AppCompatActivity {
                                                 "Altitude: " + location.getAltitude() + "\n" +
                                                 "Accuracy: " + location.getAccuracy() + "\n" +
                                                 "Speed: " + location.getSpeed() + "\n" );
+
+                //To setup the Firebase Realtime Database Json key and value
+                String systemtime = devicetime.toString();
+                String detector_name = macAddress;
+                String device_location_provider = location.getProvider().toString();
+                String device_location_longitude = Double.toString(location.getLongitude()).replace(".",",");
+                String device_location_latitude = Double.toString(location.getLatitude()).replace(".",",");
+                String device_location_altitude = Double.toString(location.getAltitude()).replace(".",",");
+                String device_location_accuracy = Double.toString(location.getAccuracy()).replace(".",",");
+                String device_location_speed = Float.toString(location.getAccuracy()).replace(".",",");
+
+                //To setup the Json format
+                //We use the "detector MAC address + system time"as the primary key or the first node of the Json
+                ref.child("detectorlocationinfo_"+systemtime).child(detector_name)
+                        .child("location provider").child(device_location_provider)
+                        .child("location longitude").child(device_location_longitude)
+                        .child("location latitude").child(device_location_latitude)
+                        .child("location altitude").child(device_location_altitude)
+                        .child("location accuracy").child(device_location_accuracy)
+                        .child("location speed").child(device_location_speed)
+                        .setValue(true);
             }
+
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) { }
+
             @Override
             public void onProviderEnabled(String provider) { }
+
             @Override
             public void onProviderDisabled(String provider) {
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -108,4 +138,6 @@ public class DetectorInfoPage extends AppCompatActivity {
     ////        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     ////        registerReceiver(batteryReceiver, filter);
     ////    }
+
+
 }
