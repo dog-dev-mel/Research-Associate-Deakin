@@ -10,11 +10,18 @@
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- CHANGE_WIFI_STATE is "Allows an app to access precise location" -->
+    <!-- CHANGE_WIFI_STATE is "Allows an app to access approximate location" -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- Set the permission for connecting the Firebase -->
+    <!-- Set the permission for connecting the Firebase and acquiring GPS locations-->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
 
     <!-- <uses-permission android:name="android.permission.BATTERY_STATS" tools:ignore="ProtectedPermissions" /> -->
     <application
