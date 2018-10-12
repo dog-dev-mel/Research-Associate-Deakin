@@ -1,12 +1,16 @@
 package com.example.ddetector.dronedetector;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -17,21 +21,23 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.SyncFailedException;
 import java.util.Date;
 
 
 public class DetectorInfoPage extends AppCompatActivity {
     private DatabaseReference ref;
+    String batterystatus;
+    String batterylevel;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detectorinfo_page);
 
-        //
         TextView detectorprovidertxtView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorProvider);
         TextView detectornametxtView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorName);
-        TextView detectorHealthyInfoView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorHealthy);
+        final TextView detectorHealthyInfoView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorHealthy);
         final TextView detectorLocationInfoView = (TextView) findViewById(R.id.ID_DetectorInfoPage_TXT_DetectorLocations);
         detectorLocationInfoView.setMovementMethod(ScrollingMovementMethod.getInstance());
 
@@ -44,10 +50,13 @@ public class DetectorInfoPage extends AppCompatActivity {
         ref = FirebaseDatabase.getInstance().getReference();
 
         //Get the Android device location Info
-        LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //Get a reference to the system Location Manager
+        final LocationManager locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //Define a listener to respond to location updates
         LocationListener locationlistener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
+
                 Date devicetime = new Date(System.currentTimeMillis());
                 detectorLocationInfoView.append("\n"+
                                                 "Device Time: " + devicetime +"\n"+
@@ -71,6 +80,8 @@ public class DetectorInfoPage extends AppCompatActivity {
                 //To setup the Json format
                 //We use the "detector MAC address + system time"as the primary key or the first node of the Json
                 ref.child("detectorlocationinfo_"+systemtime).child(detector_name)
+                        .child("battery status").child(batterystatus)
+                        .child("battery level").child(batterylevel)
                         .child("location provider").child(device_location_provider)
                         .child("location longitude").child(device_location_longitude)
                         .child("location latitude").child(device_location_latitude)
@@ -100,44 +111,44 @@ public class DetectorInfoPage extends AppCompatActivity {
 
         detectorprovidertxtView.setText("DETECTOR PROVIDER"+"\n"+"Deakin Univeristy Burwood Campus"); //set text for text view
         detectornametxtView.setText("DETECTOR UID"+"\n"+"Detector BSSID is "+macAddress);
-        detectorHealthyInfoView.setText("D CHARGING STATION INFO"+"\n"
-                +"D Charging Station Balance: "+"\n"
-                +"D Charging Station Status: ");
+
+
+        BroadcastReceiver myBroadcastReceiver = new BroadcastReceiver(){
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())){
+                    int level = intent.getIntExtra("level", 0);
+                    int scale = intent.getIntExtra("scale", 100);
+                    batterylevel =((level*100)/scale)+"%";
+
+                    int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+                    boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+                                      || status == BatteryManager.BATTERY_STATUS_DISCHARGING
+                                      ||status == BatteryManager.BATTERY_STATUS_FULL
+                                      ||status == BatteryManager.BATTERY_STATUS_NOT_CHARGING
+                                      ||status == BatteryManager.BATTERY_STATUS_UNKNOWN;
+
+                    switch(status){
+                        case 1: batterystatus = "UNKNOWN";
+                        break;
+                        case 2: batterystatus = "CHARGING";
+                            break;
+                        case 3: batterystatus = "DISCHARGING";
+                            break;
+                        case 4: batterystatus = "NOT CHARGING \nPLUGEED INTO A LOW-POWER USB PORT";
+                            break;
+                        case 5: batterystatus = "FULL";
+                            break;
+                            default: batterystatus = "";
+                    }
+
+                    detectorHealthyInfoView.setText("D CHARGING STATION INFO"+"\n"
+                            +"D Charging Station Balance Level Remaining: "+batterylevel+"\n"
+                            +"D Charging Station Status: " +batterystatus+"\n" );
+                }
+            }
+        };
+        IntentFilter ifilter  = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(myBroadcastReceiver, ifilter);
     }
-
-    //
-    //        BatteryManager batterymanager = (BatteryManager) getSystemService(Context.BATTERY_SERVICE);
-    //
-    //        int level = batterymanager.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-    //        int scale = batterymanager.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-    //
-    //        float batteryPct = level / (float)scale;
-
-    //
-    //        HardwarePropertiesManager hardwaremanager = (HardwarePropertiesManager) getSystemService(Context.HARDWARE_PROPERTIES_SERVICE);
-    //
-    //        float[] temperatures = hardwaremanager.getDeviceTemperatures( HardwarePropertiesManager.DEVICE_TEMPERATURE_CPU, HardwarePropertiesManager.TEMPERATURE_CURRENT);
-
-
-    //    @Override
-    ////    public void onCreate() {
-    ////        BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
-    ////            int scale = -1;
-    ////            int level = -1;
-    ////            int voltage = -1;
-    ////            int temp = -1;
-    ////            @Override
-    ////            public void onReceive(Context context, Intent intent) {
-    ////                level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-    ////                scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-    ////                temp = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1);
-    ////                voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1);
-    ////                Log.e("BatteryManager", "level is "+level+"/"+scale+", temp is "+temp+", voltage is "+voltage);
-    ////            }
-    ////        };
-    ////        IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-    ////        registerReceiver(batteryReceiver, filter);
-    ////    }
-
-
 }
