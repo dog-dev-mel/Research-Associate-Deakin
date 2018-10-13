@@ -13,6 +13,7 @@ public class AboutAppPage extends AppCompatActivity {
 
         TextView aboutaootextView = (TextView) findViewById(R.id.ID_AboutAppPage_TXT_Introduction);
         aboutaootextView.setText("Note that:"+"\n"
+                                  +"-To test the app, you need to your device installed a SIM for connecting a GPS network.IF not, it will be crash. It maybe support to set the Network(WIFI) as the location provider in future version"+"\n"
                                   +"-To support the WIFI scan feature, you should make sure you have grant the Android LOCATIONS permission for this APP;"+"\n"
                                   +"-The WIFI scan interval Timer is 15 seconds and written in the code, it maybe support to set the Timer value on the APP in future version;"+"\n"
                                   +"-The Detector Location updates details are:"+"\n"

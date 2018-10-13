@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -71,6 +72,7 @@ public class DetectorInfoPage extends AppCompatActivity {
                 //To setup the Firebase Realtime Database Json key and value
                 String systemtime = devicetime.toString();
                 String detector_name = macAddress;
+                String detector_brand = Build.MODEL + " " + Build.VERSION.RELEASE;
                 String device_location_provider = location.getProvider().toString();
                 String device_location_longitude = Double.toString(location.getLongitude()).replace(".",",");
                 String device_location_latitude = Double.toString(location.getLatitude()).replace(".",",");
@@ -78,30 +80,37 @@ public class DetectorInfoPage extends AppCompatActivity {
                 String device_location_accuracy = Double.toString(location.getAccuracy()).replace(".",",");
                 String device_location_speed = Float.toString(location.getAccuracy()).replace(".",",");
 
+
                 //We use the "detector MAC address + system time"as the primary key or the first node of the Json
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("battery info: ").child("battery status: "+batterystatus).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("battery info: ").child("battery level: "+batterylevel).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations provider: "+device_location_provider).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations longitude: "+device_location_longitude).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations latitude: "+device_location_latitude).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations altitude: "+device_location_altitude).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations accuracy: "+device_location_accuracy).setValue(true);
-                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name )
+
+                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations speed: "+device_location_speed).setValue(true);
             }
