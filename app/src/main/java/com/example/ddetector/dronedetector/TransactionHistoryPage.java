@@ -37,12 +37,13 @@ public class TransactionHistoryPage extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    detector _detector = postSnapshot.child("ddplatform-detector").getValue(detector.class);
+                    detector _detector = postSnapshot.child("location info").getValue(detector.class);
 
- //                   transactionhistorytextview.setText(_detector.getdetectorUID());
-//                    transactionhistorytextview.setText(_detector.getdetectorBatteryStatus());
-//                    transactionhistorytextview.setText(_detector.getdetectorBatteryLevel());
-                    transactionhistorytextview.setText(_detector.getdetectorLocationProvider());
+
+                    //transactionhistorytextview.setText(_detector.getdetectorUID());
+                    //transactionhistorytextview.setText(_detector.getdetectorBatteryStatus());
+                    //transactionhistorytextview.setText(_detector.getdetectorBatteryLevel());
+   //                 transactionhistorytextview.setText(_detector.getdetectorLocationProvider());
 //                    transactionhistorytextview.setText(_detector.getdetectorLocationLongitude());
 //                    transactionhistorytextview.setText(_detector.getdetectorLocationLatitude());
 //                    transactionhistorytextview.setText(_detector.getdetectorLocationAtitude());

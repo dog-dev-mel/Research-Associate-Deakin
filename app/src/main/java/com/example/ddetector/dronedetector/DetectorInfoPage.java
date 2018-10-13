@@ -1,6 +1,9 @@
 package com.example.ddetector.dronedetector;
 
+import android.app.admin.DeviceAdminReceiver;
+import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -17,12 +20,15 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.SyncFailedException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.util.Date;
 
 
@@ -30,6 +36,8 @@ public class DetectorInfoPage extends AppCompatActivity {
     private DatabaseReference ref;
     String batterystatus;
     String batterylevel;
+    String macAddress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +54,37 @@ public class DetectorInfoPage extends AppCompatActivity {
         //Get the Android device MAC address as the Detector UID
         WifiManager wifimanager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifimanager.getConnectionInfo();
-        final String macAddress = info.getMacAddress();
+
+        //After the Android 6.0, the Google do not allow the developer use the WIFImanger to get
+        //local device mac address for personal data privacy. If you insist on use it, you only can get the mac address
+        //is 02:00:00:00:00:00.
+        //Hence, I choose the Networkinterface to acquire it.
+        //However, it only can get the mac address when the local device WIFI is turning on.
+        //IF not, you can see the below codes, I set the default value is same as 02:00:00:00:00:00.
+        //In addition, you need to make sure you grant the ACCESS_FINE_LOCATION and ACCESS_COARSE_LOCATION permission
+        macAddress = null;
+        StringBuffer buf = new StringBuffer();
+        NetworkInterface networkInterface = null;
+        try {
+            networkInterface = NetworkInterface.getByName("eth1");
+            if (networkInterface == null) {
+                networkInterface = NetworkInterface.getByName("wlan0");
+            }
+            if (networkInterface == null) {
+                macAddress= "02:00:00:00:00:00";
+            }
+            byte[] addr = networkInterface.getHardwareAddress();
+            for (byte b : addr) {
+                buf.append(String.format("%02X:", b));
+            }
+            if (buf.length() > 0) {
+                buf.deleteCharAt(buf.length() - 1);
+            }
+            macAddress = buf.toString();
+        } catch (SocketException e) {
+            e.printStackTrace();
+            macAddress= "02:00:00:00:00:00";
+        }
 
         //Setup Firebase Database
         ref = FirebaseDatabase.getInstance().getReference();
@@ -82,35 +120,35 @@ public class DetectorInfoPage extends AppCompatActivity {
 
 
                 //We use the "detector MAC address + system time"as the primary key or the first node of the Json
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("battery info: ").child("battery status: "+batterystatus).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("battery info: ").child("battery level: "+batterylevel).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations provider: "+device_location_provider).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations longitude: "+device_location_longitude).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations latitude: "+device_location_latitude).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations altitude: "+device_location_altitude).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations accuracy: "+device_location_accuracy).setValue(true);
 
-                ref.child("detectorlocationinfo").child("detector UID: "+ macAddress + " " + detector_brand.replace(".",",") )
+                ref.child("detectorlocationinfo").child("detector UID: "+ detector_name + " " + detector_brand.replace(".",",") )
                         .child(systemtime)
                         .child("location info: ").child("locations speed: "+device_location_speed).setValue(true);
             }
