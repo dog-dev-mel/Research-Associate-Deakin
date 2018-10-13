@@ -48,20 +48,30 @@ public class DroneScanPage extends AppCompatActivity {
                 //To setup the Firebase Realtime Database Json key and value
                 Date devicetime = new Date(System.currentTimeMillis());
                 String systemtime = devicetime.toString();
-                String SSIDdata = scanResult.SSID;
-                String BSSIData = scanResult.BSSID;
+                String SSIDData = scanResult.SSID;
+                String BSSIDData = scanResult.BSSID;
                 String FreData =  Integer.toString(scanResult.frequency);
                 String LevData = Integer.toString(scanResult.level);
                 String CapData = scanResult.capabilities.replaceAll("\\[|\\]", " ");
 
                 //To setup the Json format
                 //We use the "systemtime+BSSID" as the primary key or the first node of the Json
-                ref.child("droneuid_"+systemtime).child(BSSIData)
-                        .child("ssid").child(SSIDdata)
-                        .child("frequency").child(FreData)
-                        .child("level").child(LevData)
-                        .child("capabilities").child(CapData)
-                        .setValue(true);
+
+                ref.child("droneinfo").child("drone UID: "+ BSSIDData)
+                        .child(systemtime)
+                        .child("ssid: "+SSIDData).setValue(true);
+                ref.child("droneinfo").child("drone UID: "+ BSSIDData )
+                        .child(systemtime)
+                        .child("bssid: "+BSSIDData).setValue(true);
+                ref.child("droneinfo").child("drone UID: "+ BSSIDData )
+                        .child(systemtime)
+                        .child("frequency: "+FreData).setValue(true);
+                ref.child("droneinfo").child("drone UID: "+ BSSIDData )
+                        .child(systemtime)
+                        .child("level: "+LevData).setValue(true);
+                ref.child("droneinfo").child("drone UID: "+ BSSIDData )
+                        .child(systemtime)
+                        .child("capabilities: "+CapData).setValue(true);
             }
         }
     };

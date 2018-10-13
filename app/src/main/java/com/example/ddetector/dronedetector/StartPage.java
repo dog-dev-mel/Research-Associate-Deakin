@@ -22,6 +22,8 @@ public class StartPage extends AppCompatActivity {
         Button btnDroneScan = (Button) findViewById(R.id.ID_StartPage_BTN_DroneScan);
         Button btnDetectorInfo = (Button) findViewById(R.id.ID_StartPage_BTN_DetectorInfo);
         Button btnAboutApp = (Button) findViewById(R.id.ID_StartPage_BTN_AboutApp);
+        Button btnTransactionHistory = (Button) findViewById(R.id.ID_StartPage_BTN_TransactionHistory);
+
 
         btnDroneScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,14 @@ public class StartPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartPage.this, AboutAppPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnTransactionHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, TransactionHistoryPage.class);
                 startActivity(intent);
             }
         });
