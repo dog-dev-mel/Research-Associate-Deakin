@@ -3,7 +3,7 @@ package com.example.ddetector.dronedetector;
 /**
  * Created by ZHI on 13/10/2018.
  */
-public class detectorlocationinfo {
+public class detectorinfo {
     public String detectorUID;
     public String detectorBrand;
     public String detectorTimestamp;
@@ -16,11 +16,11 @@ public class detectorlocationinfo {
     public String detectorLocationAccuracy;
     public String detectorLocationSpeed;
 
-    public detectorlocationinfo() {
+    public detectorinfo() {
 
     }
 
-    public detectorlocationinfo(String detectorUID,
+    public detectorinfo(String detectorUID,
                                 String detectorBrand,
                                 String detectorTimestamp,
                                 String detectorBatteryStatus,

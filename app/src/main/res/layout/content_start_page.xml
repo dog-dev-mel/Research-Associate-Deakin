@@ -37,6 +37,7 @@
         app:layout_constraintGuide_percent="1.00" />
 
     <Button
+        android:textSize="15sp"
         android:id="@+id/ID_StartPage_BTN_DetectorInfo"
         android:layout_width="0dp"
         android:layout_height="170dp"
@@ -51,6 +52,7 @@
         app:layout_constraintTop_toTopOf="@+id/StartpageGL1" />
 
     <Button
+        android:textSize="15sp"
         android:id="@+id/ID_StartPage_BTN_DroneScan"
         android:layout_width="0dp"
         android:layout_height="170dp"
@@ -65,7 +67,8 @@
         app:layout_constraintTop_toTopOf="@+id/StartpageGL1" />
 
     <Button
-        android:id="@+id/ID_StartPage_BTN_TransactionHistory"
+        android:textSize="15sp"
+        android:id="@+id/ID_StartPage_BTN_DetectorTransactionHistory"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_marginStart="8dp"
@@ -73,15 +76,16 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_purple"
-        android:text="@string/startpage_btn_transactionhistory"
+        android:text="@string/startpage_btn_detectortransactionhistory"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/StartpageGL4"
-        app:layout_constraintEnd_toStartOf="@+id/ID_StartPage_BTN_AboutApp"
+        app:layout_constraintEnd_toStartOf="@+id/ID_StartPage_BTN_DroneTransactionHistory"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/StartpageGL3" />
 
     <Button
-        android:id="@+id/ID_StartPage_BTN_AboutApp"
+        android:textSize="15sp"
+        android:id="@+id/ID_StartPage_BTN_DroneTransactionHistory"
         android:layout_width="0dp"
         android:layout_height="170dp"
         android:layout_marginStart="4dp"
@@ -89,11 +93,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:background="@android:color/holo_blue_light"
-        android:text="@string/startpage_btn_aboutapp"
+        android:text="@string/startpage_btn_dronetransactionhistory"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ID_StartPage_BTN_TransactionHistory"
+        app:layout_constraintStart_toEndOf="@+id/ID_StartPage_BTN_DetectorTransactionHistory"
         app:layout_constraintTop_toTopOf="@+id/StartpageGL3" />
 
     <ImageView
@@ -129,5 +133,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ID_StartPage_IMG_Logo"
         app:layout_constraintTop_toTopOf="@+id/StartpageGL2" />
+
 
 </android.support.constraint.ConstraintLayout>

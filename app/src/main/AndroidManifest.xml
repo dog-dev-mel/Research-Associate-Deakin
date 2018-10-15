@@ -61,10 +61,15 @@
             android:parentActivityName=".StartPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TransactionHistoryPage"
-            android:label="@string/transactionhistorypage_label"
+            android:name=".DetectorTransactionHistoryPage"
+            android:label="@string/detectortransactionhistorypage_label"
             android:parentActivityName=".StartPage"
-            android:screenOrientation="portrait" ></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DroneTransactionHistoryPage"
+            android:label="@string/dronetransactionhistorypage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

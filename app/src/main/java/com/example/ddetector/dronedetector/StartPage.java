@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class StartPage extends AppCompatActivity {
 
@@ -21,9 +21,10 @@ public class StartPage extends AppCompatActivity {
 
         Button btnDroneScan = (Button) findViewById(R.id.ID_StartPage_BTN_DroneScan);
         Button btnDetectorInfo = (Button) findViewById(R.id.ID_StartPage_BTN_DetectorInfo);
-        Button btnAboutApp = (Button) findViewById(R.id.ID_StartPage_BTN_AboutApp);
-        Button btnTransactionHistory = (Button) findViewById(R.id.ID_StartPage_BTN_TransactionHistory);
-
+        Button btnDetectorTransactionHistory = (Button) findViewById(R.id.ID_StartPage_BTN_DetectorTransactionHistory);
+        Button btnDroneTransactionHistory = (Button) findViewById(R.id.ID_StartPage_BTN_DroneTransactionHistory);
+        ImageView  imageViewLogo = (ImageView) findViewById(R.id.ID_StartPage_IMG_Logo);
+        TextView textViewAppName =(TextView) findViewById(R.id.ID_StartPage_TXT_AppName);
 
         btnDroneScan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +42,7 @@ public class StartPage extends AppCompatActivity {
             }
         });
 
-        btnAboutApp.setOnClickListener(new View.OnClickListener() {
+        imageViewLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartPage.this, AboutAppPage.class);
@@ -49,15 +50,30 @@ public class StartPage extends AppCompatActivity {
             }
         });
 
-        btnTransactionHistory.setOnClickListener(new View.OnClickListener() {
+        textViewAppName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartPage.this, TransactionHistoryPage.class);
+                Intent intent = new Intent(StartPage.this, AboutAppPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDetectorTransactionHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, DetectorTransactionHistoryPage.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDroneTransactionHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartPage.this, DroneTransactionHistoryPage.class);
                 startActivity(intent);
             }
         });
     }
-
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

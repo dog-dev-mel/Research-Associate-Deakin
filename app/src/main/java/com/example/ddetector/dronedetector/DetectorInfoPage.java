@@ -101,7 +101,7 @@ public class DetectorInfoPage extends AppCompatActivity {
 
                 //To setup the Firebase Realtime Database Json key and value
                 String systemtime = devicetime.toString();
-                String detector_name = macAddress;
+                String detector_bssid = macAddress;
                 String detector_brand = Build.MODEL + " " + Build.VERSION.RELEASE;
                 String device_location_provider = location.getProvider().toString();
                 String device_location_longitude = Double.toString(location.getLongitude()).replace(".", ",");
@@ -110,39 +110,38 @@ public class DetectorInfoPage extends AppCompatActivity {
                 String device_location_accuracy = Double.toString(location.getAccuracy()).replace(".", ",");
                 String device_location_speed = Float.toString(location.getAccuracy()).replace(".", ",");
 
-                //We use the "detector MAC address + system time"as the primary key or the first node of the Json
-
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
+                //We use the "detector MAC address + system time+brand"as the primary key or the first node of the Json
+                ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
                         .child("detectorTimestamp").setValue(systemtime);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorBrand").setValue(detector_brand);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorBrand").setValue(detector_brand);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorUID").setValue(macAddress);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorUID").setValue(detector_bssid);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorBatteryStatus").setValue(batterystatus);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorBatteryStatus").setValue(batterystatus);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorBatteryLevel").setValue(batterylevel);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorBatteryLevel").setValue(batterylevel);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorLocationProvider").setValue(device_location_provider);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorLocationProvider").setValue(device_location_provider);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorLocationLongitude").setValue(device_location_longitude);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorLocationLongitude").setValue(device_location_longitude);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorLocationLatitude").setValue(device_location_latitude);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorLocationLatitude").setValue(device_location_latitude);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorLocationAtitude").setValue(device_location_altitude);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorLocationAtitude").setValue(device_location_altitude);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
-                        .child("detectorLocationAccuracy").setValue(device_location_accuracy);
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
+                     .child("detectorLocationAccuracy").setValue(device_location_accuracy);
 
-                ref.child("detectorlocationinfo").child("detector UID: " + macAddress + " " + detector_brand.replace(".", ",") + systemtime)
+             ref.child("detectorinfo").child("detector UID: " + detector_bssid + " " + detector_brand.replace(".", ",") +" " + systemtime)
                         .child("detectorLocationSpeed").setValue(device_location_speed);
             }
 
