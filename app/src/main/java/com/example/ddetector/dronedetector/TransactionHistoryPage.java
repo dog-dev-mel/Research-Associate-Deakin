@@ -1,11 +1,9 @@
 package com.example.ddetector.dronedetector;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,50 +11,64 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
+import java.util.ArrayList;
 
 public class TransactionHistoryPage extends AppCompatActivity {
-    private DatabaseReference ref;
-    private TextView transactionhistorytextview;
+    ArrayList<String> list;
+    ArrayAdapter<String> adapter;
+    detectorlocationinfo _detectorlocationinfo;
+    DatabaseReference ref;
+    ListView transactionhistorylistview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history_page);
 
-        transactionhistorytextview = (TextView) findViewById(R.id.ID_TransactionHistory_TextView_WIFIScanResultstextView);
-        transactionhistorytextview.setMovementMethod(ScrollingMovementMethod.getInstance());
-        getdata();
-    }
+        transactionhistorylistview = (ListView) findViewById(R.id.ID_TransactionHistory_ListView_WIFIScanResultsListView);
 
 
-    private void getdata() {
-        ref = FirebaseDatabase.getInstance().getReference();
+        _detectorlocationinfo = new detectorlocationinfo();
+        ref = FirebaseDatabase.getInstance().getReference().child("detectorlocationinfo");
+        list = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(this, R.layout.detector_info, R.id.detector_info, list);
+
+
 
         ref.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    detector _detector = postSnapshot.child("location info").getValue(detector.class);
+                list.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
+                    _detectorlocationinfo = ds.getValue(detectorlocationinfo.class);
 
-                    //transactionhistorytextview.setText(_detector.getdetectorUID());
-                    //transactionhistorytextview.setText(_detector.getdetectorBatteryStatus());
-                    //transactionhistorytextview.setText(_detector.getdetectorBatteryLevel());
-   //                 transactionhistorytextview.setText(_detector.getdetectorLocationProvider());
-//                    transactionhistorytextview.setText(_detector.getdetectorLocationLongitude());
-//                    transactionhistorytextview.setText(_detector.getdetectorLocationLatitude());
-//                    transactionhistorytextview.setText(_detector.getdetectorLocationAtitude());
-//                    transactionhistorytextview.setText(_detector.getdetectorLocationAccuracy());
-//                    transactionhistorytextview.setText(_detector.getdetectorLocationSpeed());
+                    //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    //System.out.println(_detectorlocationinfo.getDetectorUID());
 
+                    list.add("Time Stamp: "+_detectorlocationinfo.getDetectorTimestamp()+"\n"
+                            +"Detector UID: "+_detectorlocationinfo.getDetectorUID()+"\n"
+                            +"Detector Brand: "+_detectorlocationinfo.getDetectorBrand()+"\n"
+                            +"Battery Level: "+_detectorlocationinfo.getDetectorBatteryLevel()+"\n"
+                            +"Battery Status: "+_detectorlocationinfo.getDetectorBatteryStatus()+"\n"
+                            +"Location Longitude: "+_detectorlocationinfo.getDetectorLocationLongitude()+"\n"
+                            +"Location Latitude: "+_detectorlocationinfo.getDetectorLocationLatitude()+"\n"
+                            +"Location Atitude: "+_detectorlocationinfo.getDetectorLocationAtitude()+"\n"
+                            +"Location Accuracy: "+_detectorlocationinfo.getDetectorLocationAccuracy()+"\n"
+                            +"Location Provider: "+_detectorlocationinfo.getDetectorLocationProvider()+"\n"
+                            +"Location Speed: "+_detectorlocationinfo.getDetectorLocationSpeed()
+                    );
                 }
+                transactionhistorylistview.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                transactionhistorytextview.setText(databaseError.getMessage());
+                System.out.println("The read failed: " + databaseError.getMessage());
+
             }
         });
     }
 }
+
