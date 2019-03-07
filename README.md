@@ -6,3 +6,9 @@ It is a drone detector app developed on the Android platform supporting the Andr
 
 
 #You should double check that you have grant the permission of the location for the APP, if not, you cannot get the WIFI scan results even you have set the related permission on the AndoridManifest.XML file.
+
+<details><summary>Test</summary>
+```python
+  print("Hello world")
+```
+</details>
