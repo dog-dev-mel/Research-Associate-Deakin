@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Drone Detector App</string>
+    <string name="action_settings">Settings</string>
+    <string name="platform">Platform</string>
+
+    <string name="startpage_label">Drone Detector App</string>
+    <string name="startpage_btn_detectorinfo">Detector Info</string>
+    <string name="startpage_btn_dronescan">Drone Scan</string>
+    <string name="startpage_image_logo">Start Page Logo</string>
+    <string name="startpage_text_appname">Deakin Drone Detector Platform</string>
+    <string name="startpage_btn_detectortransactionhistory">Detector Transaction History</string>
+    <string name="startpage_btn_dronetransactionhistory">Drone Transaction History</string>
+
+
+    <string name="detectorinfopage_label">Detector Info</string>
+    <string name="detectorinfopage_text_detectorprovider">Detector Provider</string>
+    <string name="detectorinfopage_text_detectorname">Detector Name</string>
+    <string name="detectorinfopage_text_detectorhealthyinfo">Detector Healthy Info</string>
+    <string name="detectorinfopage_text_detectorlocations">Detector Locations</string>
+    <string name="detectorinfopage_btn_scs">Sending Request to SCS</string>
+
+    <string name="dronescanpage_label">Drone Scan</string>
+    <string name="dronescanpage_btn_scs">Sending Request to SCS</string>
+
+    <string name="detectortransactionhistorypage_label">Detector Transaction History</string>
+
+    <string name="dronetransactionhistorypage_label">Drone Transaction History</string>
+
+    <string name="aboutapppage_label">About APP</string>
+    <string name="aboutpage_text_introduction">Version 0.1\nCopyright@2018 Deakin University.\nAll rights reserved.</string>
+</resources>

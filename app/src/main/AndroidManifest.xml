@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ddetector.dronedetector">
+
+    <!-- xmlns:tools="http://schemas.android.com/tools" -->
+
+
+    <!-- ACCESS_WIFI_STATE is "Allows applications to access information about Wi-Fi networks" -->
+    <!-- CHANGE_WIFI_STATE is "Allows applications to change Wi-Fi connectivity state" -->
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!-- CHANGE_WIFI_STATE is "Allows an app to access precise location" -->
+    <!-- CHANGE_WIFI_STATE is "Allows an app to access approximate location" -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Set the permission for connecting the Firebase and acquiring GPS locations -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-feature android:name="android.hardware.location.gps" />
+    <uses-feature android:name="android.hardware.location.network" />
+
+    <!-- <uses-permission android:name="android.permission.BATTERY_STATS" tools:ignore="ProtectedPermissions" /> -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".StartPage"
+            android:label="@string/startpage_label"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.ACTION_BATTERY_LOW" />
+                <action android:name="android.intent.action.ACTION_BATTERY_OKAY" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DetectorInfoPage"
+            android:label="@string/detectorinfopage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DroneScanPage"
+            android:label="@string/dronescanpage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutAppPage"
+            android:label="@string/aboutapppage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DetectorTransactionHistoryPage"
+            android:label="@string/detectortransactionhistorypage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DroneTransactionHistoryPage"
+            android:label="@string/dronetransactionhistorypage_label"
+            android:parentActivityName=".StartPage"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>
