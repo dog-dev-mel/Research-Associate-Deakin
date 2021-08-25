@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DeakinSanbot</string>
+    <string name="TipsText">Please scan your face</string>
+    <string name="EnquiryButton">Enquiry</string>
+    <string name="ExitButton">Exit</string>
+</resources>
